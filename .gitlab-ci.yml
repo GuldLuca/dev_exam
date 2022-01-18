@@ -3,6 +3,9 @@ stages:
   - test
   - deploy
 
+services:
+  - mysql:latest
+
 cache:
   paths:
     - node_modules/
