@@ -52,7 +52,7 @@ unit-test:
     - mysql --version
     - sleep 20
     - echo "$MYSQL_TEST_HOST"
-    - echo "SELECT 'OK';" | mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_TEST_PASSWORD" --host="$MYSQL_TEST_HOST" "$MYSQL_TEST_DB_NAME"
+    - echo "SELECT 'OK';" | mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_TEST_PASSWORD" --host="$MYSQL_TEST_HOST" "$MYSQL_TEST_DB_NAME --protocol=tcp"
     - npm test
 
   artifacts:
