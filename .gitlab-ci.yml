@@ -4,11 +4,11 @@ stages:
   - deploy
 
 variables:
-  MYSQL_DATABASE: $MYSQL_DATABASE
-  MYSQL_ROOT_PASSWORD: $MYSQL_DEV_PASSWORD
-  MYSQL_USER: $MYSQL_DEV_USER
-  MYSQL_PORT: $MYSQL_DEV_PORT
-  MYSQL_HOST: $MYSQL_DEV_HOST
+  MYSQL_DATABASE: $MYSQL_TEST_DB_NAME
+  MYSQL_ROOT_PASSWORD: $MYSQL_TEST_PASSWORD
+  MYSQL_USER: $MYSQL_TEST_USER
+  MYSQL_PORT: $MYSQL_TEST_PORT
+  MYSQL_HOST: $MYSQL_TEST_HOST
 
 
 cache:
@@ -50,7 +50,9 @@ unit-test:
     - npm install
     - mysql --version
     - sleep 20
-    - echo "SHOW tables;"| mysql -u root -p"$MYSQL_TEST_PASSWORD" -h "${MYSQL_TEST_HOST}" "${MYSQL_TEST_DB_NAME}"
+    - echo "Database host is '${MYSQL_TEST_HOST}'"
+    - echo "SHOW databases;" | mysql -u "${MYSQL_TEST_USER}" -p"$MYSQL_TEST_PASSWORD" -h "${MYSQL_TEST_HOST}"
+
     - npm test
 
   artifacts:
