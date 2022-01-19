@@ -4,8 +4,8 @@ stages:
   - deploy
 
 variables:
-  MYSQL_DATABASE: test_users
-  MYSQL_ROOT_PASSWORD: 55Ankler
+  MYSQL_DATABASE: "$MYSQL_TEST_DB_NAME"
+  MYSQL_ROOT_PASSWORD: "$MYSQL_TEST_PASSWORD"
 
 
 
@@ -52,7 +52,7 @@ unit-test:
     - mysql --version
     - sleep 20
     - echo "$MYSQL_TEST_HOST"
-    - echo "SELECT 'OK';" | mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_ROOT_PASSWORD" --host=mysql "$MYSQL_DATABASE"
+    - echo "SELECT 'OK';" | mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_TEST_PASSWORD" --host="$MYSQL_TEST_HOST" "$MYSQL_TEST_DB_NAME"
     - npm test
 
   artifacts:
