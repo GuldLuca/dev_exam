@@ -8,7 +8,7 @@ variables:
   MYSQL_ROOT_PASSWORD: $MYSQL_TEST_PASSWORD
   MYSQL_USER: $MYSQL_TEST_USER
   MYSQL_PORT: $MYSQL_TEST_PORT
-  MYSQL_HOST: $MYSQL_TEST_HOST
+  MYSQL_HOST: mysql
 
 
 cache:
@@ -45,6 +45,7 @@ unit-test:
   tags:
     - docker-runner
   script:
+    - echo $MYSQL_TEST_HOST
     - apt-get update
     - apt-get install build-essential curl default-mysql-client -y
     - curl -sL https://deb.nodesource.com/setup_12.x | bash -
