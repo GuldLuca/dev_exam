@@ -44,7 +44,7 @@ unit-test:
     - mysql:5.7
   script:
     - apt-get update
-    - apt-get install build-essential curl mysql-client-5.7 mysql-server-5.7 -y
+    - apt-get install build-essential curl libmcrypt-dev default-mysql-client -y
     - curl -sL https://deb.nodesource.com/setup_12.x | bash -
     - apt install nodejs
     - npm install
