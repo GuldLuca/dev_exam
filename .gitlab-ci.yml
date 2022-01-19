@@ -49,7 +49,7 @@ unit-test:
     - apt install nodejs
     - npm install
     - mysql --version
-    - service mysql restart
+    - systemctl restart mysql
     - sleep 20
     - systemctl status mysql
     - echo "Database host is '${MYSQL_TEST_HOST}'"
