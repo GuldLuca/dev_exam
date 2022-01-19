@@ -4,11 +4,9 @@ stages:
   - deploy
 
 variables:
-  MYSQL_DATABASE: $MYSQL_TEST_DB_NAME
-  MYSQL_ROOT_PASSWORD: $MYSQL_TEST_PASSWORD
-  MYSQL_USER: $MYSQL_TEST_USER
-  MYSQL_PORT: $MYSQL_TEST_PORT
-  MYSQL_HOST: $MYSQL_TEST_HOST
+  MYSQL_DATABASE: "$MYSQL_TEST_DB_NAME"
+  MYSQL_ROOT_PASSWORD: "$MYSQL_TEST_PASSWORD"
+
 
 
 cache:
@@ -42,17 +40,19 @@ unit-test:
   stage: test
   services:
     - mysql:5.7
+  tags:
+    - docker-runner
   script:
+    - echo $MYSQL_TEST_HOST
     - apt-get update
-    - apt-get install build-essential curl libmcrypt-dev default-mysql-client -y
+    - apt-get install build-essential curl default-mysql-client -y
     - curl -sL https://deb.nodesource.com/setup_12.x | bash -
     - apt install nodejs
     - npm install
     - mysql --version
     - sleep 20
-    - echo "Database host is '${MYSQL_TEST_HOST}'"
-    - echo "SHOW databases;" | mysql -u "${MYSQL_TEST_USER}" -p"$MYSQL_TEST_PASSWORD" -h "${MYSQL_TEST_HOST}" --protocol=tcp
-
+    - echo "$MYSQL_TEST_HOST"
+    - echo "SELECT 'OK';" | mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_TEST_PASSWORD" --host="$MYSQL_TEST_HOST" "$MYSQL_TEST_DB_NAME"
     - npm test
 
   artifacts:
