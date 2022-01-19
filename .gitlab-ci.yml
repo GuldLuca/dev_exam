@@ -42,6 +42,8 @@ unit-test:
   stage: test
   services:
     - mysql:5.7
+  tags:
+    - docker-runner
   script:
     - apt-get update
     - apt-get install build-essential curl default-mysql-client -y
@@ -49,9 +51,7 @@ unit-test:
     - apt install nodejs
     - npm install
     - mysql --version
-    - systemctl restart mysql
     - sleep 20
-    - systemctl status mysql
     - echo "Database host is '${MYSQL_TEST_HOST}'"
     - echo "SHOW databases;" | mysql -u "${MYSQL_TEST_USER}" -p"$MYSQL_TEST_PASSWORD" -h "${MYSQL_TEST_HOST}" --protocol=tcp
 
