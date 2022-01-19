@@ -44,12 +44,14 @@ unit-test:
     - mysql:5.7
   script:
     - apt-get update
-    - apt-get install build-essential curl libmcrypt-dev default-mysql-client -y
+    - apt-get install build-essential curl mysql-server mysql-client libmysqlclient-dev -y
     - curl -sL https://deb.nodesource.com/setup_12.x | bash -
     - apt install nodejs
     - npm install
     - mysql --version
+    - service mysql restart
     - sleep 20
+    - systemctl status mysql
     - echo "Database host is '${MYSQL_TEST_HOST}'"
     - echo "SHOW databases;" | mysql -u "${MYSQL_TEST_USER}" -p"$MYSQL_TEST_PASSWORD" -h "${MYSQL_TEST_HOST}" --protocol=tcp
 
