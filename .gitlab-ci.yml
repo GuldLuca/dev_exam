@@ -6,6 +6,14 @@ stages:
 services:
   - mysql:latest
 
+variables:
+  MYSQL_DATABASE: $MYSQL_DATABASE
+  MYSQL_ROOT_PASSWORD: $MYSQL_DEV_PASSWORD
+  MYSQL_USER: $MYSQL_DEV_USER
+  MYSQL_PORT: $MYSQL_DEV_PORT
+  MYSQL_HOST: $MYSQL_DEV_HOST
+
+
 cache:
   paths:
     - node_modules/
