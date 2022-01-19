@@ -54,7 +54,7 @@ unit-test:
     - mysql --version
     - sleep 20
     - echo "Database host is '${MYSQL_TEST_HOST}'"
-    - echo "SHOW databases;" | mysql -u "${MYSQL_TEST_USER}" -p"$MYSQL_TEST_PASSWORD" -h "${MYSQL_TEST_HOST}" --protocol=tcp
+    - echo "SHOW databases;" | mysql -u runner -p 55Ankler -h mysql --protocol=tcp
 
     - npm test
 
