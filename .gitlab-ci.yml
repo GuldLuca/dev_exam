@@ -7,11 +7,6 @@ variables:
   MYSQL_DATABASE: "$MYSQL_TEST_DB_NAME"
   MYSQL_ROOT_PASSWORD: "$MYSQL_TEST_PASSWORD"
 
-services:
-  - mysql:5.7
-
-
-
 cache:
   paths:
     - node_modules/
@@ -42,10 +37,13 @@ docker-build:
 unit-test:
   stage: test
   image: mysql
+  services: 
+    - mysql:5.7
   tags:
     - docker-runner
   script:
     - echo $MYSQL_TEST_HOST
+    - echo $MYSQL_DATABASE
     - apt-get update
     - apt-get install build-essential curl default-mysql-client -y
     - curl -sL https://deb.nodesource.com/setup_12.x | bash -
@@ -53,7 +51,6 @@ unit-test:
     - npm install
     - mysql --version
     - sleep 20
-    - echo "$MYSQL_TEST_HOST"
     - echo "SELECT 'OK';" | mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_TEST_PASSWORD" --host="$MYSQL_TEST_HOST" "$MYSQL_TEST_DB_NAME --protocol tcp"
     - npm test
 
