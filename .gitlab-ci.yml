@@ -51,7 +51,7 @@ unit-test:
     - npm install
     - mysql --version
     - sleep 20
-    - mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_TEST_PASSWORD" --host="$MYSQL_TEST_HOST" "$MYSQL_TEST_DB_NAME --protocol=TCP"
+    - mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_TEST_PASSWORD" --host="$MYSQL_TEST_HOST" "$MYSQL_TEST_DB_NAME" --protocol=TCP
     - npm test
 
   artifacts:
