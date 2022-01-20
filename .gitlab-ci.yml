@@ -45,7 +45,7 @@ unit-test:
     - echo $MYSQL_TEST_HOST
     - echo $MYSQL_DATABASE
     - apt-get update
-    - apt-get install build-essential curl-y
+    - apt-get install build-essential curl -y
     - curl -sL https://deb.nodesource.com/setup_12.x | bash -
     - apt install nodejs
     - npm install
