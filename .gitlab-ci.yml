@@ -45,13 +45,13 @@ unit-test:
     - echo $MYSQL_TEST_HOST
     - echo $MYSQL_DATABASE
     - apt-get update
-    - apt-get install build-essential curl default-mysql-client -y
+    - apt-get install build-essential curl-y
     - curl -sL https://deb.nodesource.com/setup_12.x | bash -
     - apt install nodejs
     - npm install
     - mysql --version
     - sleep 20
-    - echo "SELECT 'OK';" | mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_TEST_PASSWORD" --host="$MYSQL_TEST_HOST" "$MYSQL_TEST_DB_NAME --protocol tcp"
+    - mysql --user="$MYSQL_TEST_USER" --password="$MYSQL_TEST_PASSWORD" --host="$MYSQL_TEST_HOST" "$MYSQL_TEST_DB_NAME --protocol=TCP"
     - npm test
 
   artifacts:
